@@ -1,0 +1,22 @@
+{
+  "name": "akiibot-rewrite",
+  "version": "0.0.2",
+  "description": "a rewrite of my bot Akiibot",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jennasisis/AkiiBot-Rewrite.git"
+  },
+  "author": "jennasisis / Akii",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jennasisis/AkiiBot-Rewrite/issues"
+  },
+  "homepage": "https://github.com/jennasisis/AkiiBot-Rewrite#readme",
+  "dependencies": {
+    "discord.js": "^11.2.1"
+  }
+}

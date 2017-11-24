@@ -1,4 +1,5 @@
 module.exports.run = (client, message, args) => {
+    console.log("guildinfo command ran");
     const Discord = require('discord.js');
     
     if(message.channel.type === "dm"){

@@ -4,8 +4,8 @@
   "description": "a rewrite of my bot Akiibot",
   "main": "main.js",
   "scripts": {
-    "test": "echo Test has been run.",
-    "start": "node main.js"
+    "test": "node main.js",
+    "start": "node start.js"
   },
   "repository": {
     "type": "git",

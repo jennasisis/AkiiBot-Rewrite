@@ -24,7 +24,7 @@ module.exports.run = (client, message, args) => {
 
         //The actual message
         message.channel.send(new Discord.RichEmbed()
-            .setColor(message.member.highestRole.color)
+            .setColor(message.member.displayColor)
             .setThumbnail(message.author.avatarURL)
             .setAuthor(message.author.tag, message.author.avatarURL)
             .addField("ID:", message.author.id, true)

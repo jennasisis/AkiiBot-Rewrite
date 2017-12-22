@@ -45,16 +45,16 @@ module.exports.run = (client, message, args) => {
 
         //The actual message
         message.channel.send(new Discord.RichEmbed()
-        .setColor(message.guild.me.displayColor)
-        .setThumbnail(guildIcon)
-        .setAuthor(`Information on ${message.guild.name}:`, guildIcon, null)
-        .addField("Guild Owner:", message.guild.owner.user.tag, true)
-        .addField("Guild ID:", message.guild.id, true)
-        .addField("Members:", message.guild.memberCount, true)
-        .addField("Channels:", `${message.guild.channels.size} channels`, true)
-        .addField("Region:", region, true)
-        .addField("Server Created:", guildCreatedAt.toLocaleString(), true)
-        .addField("Emotes:", emotes, true)
-    );
+            .setColor(message.guild.me.displayColor)
+            .setThumbnail(guildIcon)
+            .setAuthor(`Information on ${message.guild.name}:`, guildIcon, null)
+            .addField("Guild Owner:", message.guild.owner.user.tag, true)
+            .addField("Guild ID:", message.guild.id, true)
+            .addField("Members:", message.guild.memberCount, true)
+            .addField("Channels:", `${message.guild.channels.size} channels`, true)
+            .addField("Region:", region, true)
+            .addField("Server Created:", guildCreatedAt.toLocaleString(), true)
+            .addField("Emotes:", emotes, true)
+        );
     }
 };

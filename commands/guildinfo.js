@@ -27,16 +27,32 @@ module.exports.run = (client, message, args) => {
         //You can probably tell what this is by looking at the var name
         var guildCreatedAt = new Date(message.guild.createdTimestamp);
 
+        //Pretty-ifies the region
+        var region = "Wumpus Region"
+        if(message.guild.region === "us-east"){region = "<:regionFlagUSA:393889521449566208> Eastern USA"}
+        else if(message.guild.region === "brazil"){region = "<:regionFlagBrazil:393889521177198602> Brazil"}
+        else if(message.guild.region === "eu-central"){region = "<:regionFlagEurope:393889521155964929> Central Europe"}
+        else if(message.guild.region === "hongkong"){region = "<:regionFlagHongKong:393889521134993409> Hong Kong"}
+        else if(message.guild.region === "japan"){region = "<:regionFlagJapan:393889521487577109> Japan"}
+        else if(message.guild.region === "russia"){region = "<:regionFlagRussia:393889521009295371> Russia"}
+        else if(message.guild.region === "singapore"){region = "<:regionFlagSingapore:393889521608949781> Singapore"}
+        else if(message.guild.region === "sydney"){region = "<:regionFlagSydney:393889521374068746> Sydney"}
+        else if(message.guild.region === "us-central"){region = "<:regionFlagUSA:393889521449566208> Central USA"}
+        else if(message.guild.region === "us-south"){region = "<:regionFlagUSA:393889521449566208> Southern USA"}
+        else if(message.guild.region === "us-west"){region = "<:regionFlagUSA:393889521449566208> Western USA"}
+        else if(message.guild.region === "eu-west"){region = "<:regionFlagEurope:393889521155964929> Western Europe"}
+        else {region = "<:regionFlagWumpus:393900238244675606> Wumpus Land (Unknown)"}
+
         //The actual message
         message.channel.send(new Discord.RichEmbed()
-        .setColor(7506394)
+        .setColor(message.guild.me.displayColor)
         .setThumbnail(guildIcon)
         .setAuthor(`Information on ${message.guild.name}:`, guildIcon, null)
         .addField("Guild Owner:", message.guild.owner.user.tag, true)
         .addField("Guild ID:", message.guild.id, true)
         .addField("Members:", message.guild.memberCount, true)
         .addField("Channels:", `${message.guild.channels.size} channels`, true)
-        .addField("Region:", message.guild.region, true)
+        .addField("Region:", region, true)
         .addField("Server Created:", guildCreatedAt.toLocaleString(), true)
         .addField("Emotes:", emotes, true)
     );

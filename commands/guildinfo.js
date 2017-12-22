@@ -28,7 +28,7 @@ module.exports.run = (client, message, args) => {
         var guildCreatedAt = new Date(message.guild.createdTimestamp);
 
         //Pretty-ifies the region
-        var region = "Wumpus Region"
+        var region = "Wumpus Land"
         if(message.guild.region === "us-east"){region = "<:regionFlagUSA:393889521449566208> Eastern USA"}
         else if(message.guild.region === "brazil"){region = "<:regionFlagBrazil:393889521177198602> Brazil"}
         else if(message.guild.region === "eu-central"){region = "<:regionFlagEurope:393889521155964929> Central Europe"}

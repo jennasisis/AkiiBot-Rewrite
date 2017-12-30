@@ -8,7 +8,7 @@ module.exports.run = (client, message, args) => {
       }
     
     if(message.author.id !== "107599228900999168"){
-        message.channel.send(":x: You do not have access to that command.");
+        message.channel.send(":x: This command is for Akii only!");
         return;
     } else {
         try {

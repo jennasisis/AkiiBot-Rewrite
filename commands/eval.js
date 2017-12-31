@@ -1,5 +1,8 @@
 module.exports.run = (client, message, args) => {
     console.log("eval command ran");
+
+    const pkg = require('../package.json');
+    
     function clean(text) {
         if (typeof(text) === "string")
           return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));

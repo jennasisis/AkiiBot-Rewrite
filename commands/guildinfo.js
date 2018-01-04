@@ -44,14 +44,14 @@ module.exports.run = (client, message, args) => {
         else {region = "<:regionFlagWumpus:393900238244675606> Wumpus Land (Unknown)"}
 
         //Verification level checker
-        var verification = "Default"
+        var verification = "Error";
 
 
-        if(message.guild.verificationLevel === "0"){verification = "None"}
-        else if(message.guild.verificationLevel === "1"){verification = "Low"}
-        else if(message.guild.verificationLevel === "2"){verification = "Medium"}
-        else if(message.guild.verificationLevel === "3"){verification = "(╯°□°）╯︵ ┻━┻ (High)"}
-        else if(message.guild.verificationLevel === "4"){verification = "┻━┻ ﾐヽ(ಠ益ಠ)ノ彡┻━┻ (Extreme)"}
+        if(message.guild.verificationLevel === 0){verification = "None"}
+        else if(message.guild.verificationLevel === 1){verification = "Low"}
+        else if(message.guild.verificationLevel === 2){verification = "Medium"}
+        else if(message.guild.verificationLevel === 3){verification = "(╯°□°）╯︵ ┻━┻ (High)"}
+        else if(message.guild.verificationLevel === 4){verification = "┻━┻ ﾐヽ(ಠ益ಠ)ノ彡┻━┻ (Extreme)"}
 
         //The actual message
         message.channel.send(new Discord.RichEmbed()
@@ -63,12 +63,9 @@ module.exports.run = (client, message, args) => {
             .addField("Members:", message.guild.memberCount, true)
             .addField("Channels:", `${message.guild.channels.size} channels`, true)
             .addField("Region:", region, true)
-            //.addField("Verification:", verification, true)
+            .addField("Verification:", verification, true)
             .addField("Server Created:", guildCreatedAt.toLocaleString(), true)
             .addField("Emotes:", emotes, true)
         );
-
-        message.channel.send(`Verification var: ${verification}`);
-        message.channel.send(`Verification Level: ${message.guild.verificationLevel}`);
     }
 };

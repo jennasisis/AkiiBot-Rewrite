@@ -2,24 +2,24 @@ const RichEmbed = require('discord.js').RichEmbed;
 
 module.exports.run = (client, message, args) => {
     console.log('userinfo command ran');
-    
-    if(message.mentions.users.size < 1){
-        
+
+    if (message.mentions.users.size < 1) {
+
         //Finds the author nickname
-        if(message.member.nickname){const authorNick = message.member.nickname} else {const authorNick = 'None'}
-        
+        if (message.member.nickname) { const authorNick = message.member.nickname } else { const authorNick = 'None' }
+
         //Finds the author game and/or game URL
-        if(message.author.presence.game){const authorGame = message.author.presence.game.name} else {const authorGame = 'None'}
-        
+        if (message.author.presence.game) { const authorGame = message.author.presence.game.name } else { const authorGame = 'None' }
+
         //Finds the author presence status
-        if(message.author.presence.status === 'online'){let authorStatus = 'Online'}
-        else if(message.author.presence.status === 'idle'){let authorStatus = 'Idle'}
-        else if(message.author.presence.status === 'dnd'){let authorStatus = 'Do Not Disturb'}
-        else if(message.author.presence.status === 'offline'){let authorStatus = 'Offline'}
+        if (message.author.presence.status === 'online') { let authorStatus = 'Online' }
+        else if (message.author.presence.status === 'idle') { let authorStatus = 'Idle' }
+        else if (message.author.presence.status === 'dnd') { let authorStatus = 'Do Not Disturb' }
+        else if (message.author.presence.status === 'offline') { let authorStatus = 'Offline' }
 
         //Finds the author's avatar
-        if(message.author.avatarURL){const authorAvatar = message.author.avatarURL}
-        else {const authorAvatar = 'https://cdn.discordapp.com/embed/avatars/1.png?width=80&height=80'}
+        if (message.author.avatarURL) { const authorAvatar = message.author.avatarURL }
+        else { const authorAvatar = 'https://cdn.discordapp.com/embed/avatars/1.png?width=80&height=80' }
 
         //The actual message
         message.channel.send(new RichEmbed()
@@ -33,28 +33,28 @@ module.exports.run = (client, message, args) => {
             .addField('Joined:', new Date(message.member.joinedTimestamp).toLocaleString(), true)
             .addField('Registered:', new Date(message.author.createdTimestamp).toLocaleString(), true)
             .addField('Roles:', message.member.roles.map(g => g.name).join(', '), true)
-    );
-    } else if(message.mentions.users.size > 1){
+        );
+    } else if (message.mentions.users.size > 1) {
         message.channel.send(":x: You are mentioning too many users.")
     } else {
         //Finds the user's nickname
-        if(message.mentions.members.first().nickname){const mentionedNick = message.mentions.members.first().nickname}
-        else {const mentionedNick = 'None'}
+        if (message.mentions.members.first().nickname) { const mentionedNick = message.mentions.members.first().nickname }
+        else { const mentionedNick = 'None' }
 
         //Finds the user's presence status
-        if(message.mentions.users.first().presence.status === 'online'){const mentionedStatus = 'Online'}
-        else if(message.mentions.users.first().presence.status === 'idle'){const mentionedStatus = 'Idle'}
-        else if(message.mentions.users.first().presence.status === 'dnd'){const mentionedStatus = 'Do Not Disturb'}
-        else if(message.mentions.users.first().presence.status === 'offline'){const mentionedStatus = 'Offline'}
+        if (message.mentions.users.first().presence.status === 'online') { const mentionedStatus = 'Online' }
+        else if (message.mentions.users.first().presence.status === 'idle') { const mentionedStatus = 'Idle' }
+        else if (message.mentions.users.first().presence.status === 'dnd') { const mentionedStatus = 'Do Not Disturb' }
+        else if (message.mentions.users.first().presence.status === 'offline') { const mentionedStatus = 'Offline' }
 
         //Finds the user's game
-        if(message.mentions.users.first().presence.game){const mentionedGame = message.mentions.users.first().presence.game.name}
-        else {const mentionedGame = 'None'}
+        if (message.mentions.users.first().presence.game) { const mentionedGame = message.mentions.users.first().presence.game.name }
+        else { const mentionedGame = 'None' }
 
         //Finds the user's avatar
-        if(message.mentions.users.first().avatarURL){const mentionedAvatar = message.mentions.users.first().avatarURL}
-        else {const mentionedAvatar = 'https://cdn.discordapp.com/embed/avatars/1.png?width=80&height=80'}
-        
+        if (message.mentions.users.first().avatarURL) { const mentionedAvatar = message.mentions.users.first().avatarURL }
+        else { const mentionedAvatar = 'https://cdn.discordapp.com/embed/avatars/1.png?width=80&height=80' }
+
         //The actual message
         message.channel.send(new RichEmbed()
             .setColor(message.mentions.users.first().displayColor)

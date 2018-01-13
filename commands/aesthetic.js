@@ -1,1 +1,1 @@
-module.exports.run = (client, message, args) => message.channel.send('```'+args.join(' ').split('').join(' ')+'```');
+module.exports.run = (client, message, args) => message.channel.send('```' + args.join(' ').split('').join(' ') + '```');

@@ -1,4 +1,4 @@
-const ShardClientUtil = require('discord.js').ShardClientUtil; 
+const ShardClientUtil = require('discord.js').ShardClientUtil;
 const config = require('../config.json');
 
 module.exports.run = async (client) => {

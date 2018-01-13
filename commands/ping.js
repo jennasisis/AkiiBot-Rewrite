@@ -10,7 +10,7 @@ module.exports.run = (client, message, args) => {
         thismessage.delete();
         message.channel.send(new RichEmbed()
             .addField(':ping_pong: Ping:', `${Math.round(client.ping)} ms`)
-            .addField(':left_right_arrow: Latency:', `${thismessage.createdAt-message.createdAt} ms`)
+            .addField(':left_right_arrow: Latency:', `${thismessage.createdAt - message.createdAt} ms`)
             .setColor(7506394)
         );
     });

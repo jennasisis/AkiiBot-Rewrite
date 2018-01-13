@@ -28,30 +28,73 @@ module.exports.run = (client, message, args) => {
         }
 
         //Pretty-ifies the region
-        let region = 'Wumpus Land'
-        if (message.guild.region === 'us-east') { region = '<:regionFlagUSA:393889521449566208> Eastern USA' }
-        else if (message.guild.region === 'brazil') { region = '<:regionFlagBrazil:393889521177198602> Brazil' }
-        else if (message.guild.region === 'eu-central') { region = '<:regionFlagEurope:393889521155964929> Central Europe' }
-        else if (message.guild.region === 'hongkong') { region = '<:regionFlagHongKong:393889521134993409> Hong Kong' }
-        else if (message.guild.region === 'japan') { region = '<:regionFlagJapan:393889521487577109> Japan' }
-        else if (message.guild.region === 'russia') { region = '<:regionFlagRussia:393889521009295371> Russia' }
-        else if (message.guild.region === 'singapore') { region = '<:regionFlagSingapore:393889521608949781> Singapore' }
-        else if (message.guild.region === 'sydney') { region = '<:regionFlagSydney:393889521374068746> Sydney' }
-        else if (message.guild.region === 'us-central') { region = '<:regionFlagUSA:393889521449566208> Central USA' }
-        else if (message.guild.region === 'us-south') { region = '<:regionFlagUSA:393889521449566208> Southern USA' }
-        else if (message.guild.region === 'us-west') { region = '<:regionFlagUSA:393889521449566208> Western USA' }
-        else if (message.guild.region === 'eu-west') { region = '<:regionFlagEurope:393889521155964929> Western Europe' }
-        else { region = '<:regionFlagWumpus:393900238244675606> Wumpus Land (Unknown)' }
+        let region;
+
+        switch (message.guild.region) {
+            case 'us-east':
+                region = '<:regionFlagUSA:393889521449566208> Eastern USA';
+                break;
+            case 'brazil':
+                region = '<:regionFlagBrazil:393889521177198602> Brazil';
+                break;
+            case 'eu-central':
+                region = '<:regionFlagEurope:393889521155964929> Central Europe';
+                break;
+            case 'hongkong':
+                region = '<:regionFlagHongKong:393889521134993409> Hong Kong';
+                break;
+            case 'japan':
+                region = '<:regionFlagJapan:393889521487577109> Japan';
+                break;
+            case 'russia':
+                region = '<:regionFlagRussia:393889521009295371> Russia';
+                break;
+            case 'singapore':
+                region = '<:regionFlagSingapore:393889521608949781> Singapore';
+                break;
+            case 'sydney':
+                region = '<:regionFlagSydney:393889521374068746> Sydney';
+                break;
+            case 'us-central':
+                region = '<:regionFlagUSA:393889521449566208> Central USA';
+                break;
+            case 'us-south':
+                region = '<:regionFlagUSA:393889521449566208> Southern USA';
+                break;
+            case 'us-west':
+                region = '<:regionFlagUSA:393889521449566208> Western USA';
+                break;
+            case 'eu-west':
+                region = '<:regionFlagEurope:393889521155964929> Western Europe';
+                break;
+            default:
+                region = '<:regionFlagWumpus:393900238244675606> Wumpus Land (Unknown)';
+                break;
+        }
 
         //Verification level checker
-        let verification = 'Default'
+        let verification;
 
-
-        if (message.guild.verificationLevel === '0') { verification = 'None' }
-        else if (message.guild.verificationLevel === '1') { verification = 'Low' }
-        else if (message.guild.verificationLevel === '2') { verification = 'Medium' }
-        else if (message.guild.verificationLevel === '3') { verification = '(╯°□°）╯︵ ┻━┻ (High)' }
-        else if (message.guild.verificationLevel === '4') { verification = '┻━┻ ﾐヽ(ಠ益ಠ)ノ彡┻━┻ (Extreme)' }
+        switch(message.guild.verificationLevel) {
+            case '0':
+                verification = 'None';
+                break;
+            case '1':
+                verification = 'Low';
+                break;
+            case '2':
+                verification = 'Medium';
+                break;
+            case '3':
+                verification = '(╯°□°）╯︵ ┻━┻ (High)';
+                break;
+            case '4':
+                verification = '┻━┻ ﾐヽ(ಠ益ಠ)ノ彡┻━┻ (Extreme)';
+                break;
+            default:
+                verification = 'Default';
+                break;
+        }
 
         //The actual message
         message.channel.send(new RichEmbed()

@@ -12,10 +12,23 @@ module.exports.run = (client, message, args) => {
         if (message.author.presence.game) { const authorGame = message.author.presence.game.name } else { const authorGame = 'None' }
 
         //Finds the author presence status
-        if (message.author.presence.status === 'online') { let authorStatus = 'Online' }
-        else if (message.author.presence.status === 'idle') { let authorStatus = 'Idle' }
-        else if (message.author.presence.status === 'dnd') { let authorStatus = 'Do Not Disturb' }
-        else if (message.author.presence.status === 'offline') { let authorStatus = 'Offline' }
+        switch(message.mentions.users.first().presence.status) {
+            case 'online':
+                const mentionedStatus = 'Online';
+                break;
+            case 'idle':
+                const mentionedStatus = 'Idle';
+                break;
+            case 'dnd':
+                const mentionedStatus = 'Do Not Disturb';
+                break;
+            case 'offline':
+                const mentionedStatus = 'Offline';
+                break;
+            default:
+                const mentionedStatus = 'Unknown';
+                break;
+        }
 
         //Finds the author's avatar
         if (message.author.avatarURL) { const authorAvatar = message.author.avatarURL }
@@ -42,10 +55,23 @@ module.exports.run = (client, message, args) => {
         else { const mentionedNick = 'None' }
 
         //Finds the user's presence status
-        if (message.mentions.users.first().presence.status === 'online') { const mentionedStatus = 'Online' }
-        else if (message.mentions.users.first().presence.status === 'idle') { const mentionedStatus = 'Idle' }
-        else if (message.mentions.users.first().presence.status === 'dnd') { const mentionedStatus = 'Do Not Disturb' }
-        else if (message.mentions.users.first().presence.status === 'offline') { const mentionedStatus = 'Offline' }
+        switch(message.mentions.users.first().presence.status) {
+            case 'online':
+                const mentionedStatus = 'Online';
+                break;
+            case 'idle':
+                const mentionedStatus = 'Idle';
+                break;
+            case 'dnd':
+                const mentionedStatus = 'Do Not Disturb';
+                break;
+            case 'offline':
+                const mentionedStatus = 'Offline';
+                break;
+            default:
+                const mentionedStatus = 'Unknown';
+                break;
+        }
 
         //Finds the user's game
         if (message.mentions.users.first().presence.game) { const mentionedGame = message.mentions.users.first().presence.game.name }

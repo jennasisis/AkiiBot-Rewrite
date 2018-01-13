@@ -4,10 +4,8 @@ module.exports.run = (client, message, args) => {
   console.log('eval command ran');
 
   function clean(text) {
-    if (typeof (text) === 'string')
-      return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
-    else
-      return text;
+    if (typeof (text) === 'string') return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
+    return text;
   }
 
   if (message.author.id !== '107599228900999168') {
@@ -22,7 +20,7 @@ module.exports.run = (client, message, args) => {
       message.channel.send(clean(evaled), { code: 'xl' });
     }
     catch (err) {
-      message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+      message.channel.send('`ERROR` ```xl\n' + clean(err) + '\n```');
     }
   }
 };

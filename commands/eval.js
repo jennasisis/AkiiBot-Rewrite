@@ -15,8 +15,7 @@ module.exports.run = (client, message, args) => {
         return;
     } else {
         try {
-          const code = args.join(' ');
-          let evaled = eval(code);
+          let evaled = eval(args.join(' '));
     
           if (typeof evaled !== 'string')
             evaled = require('util').inspect(evaled);

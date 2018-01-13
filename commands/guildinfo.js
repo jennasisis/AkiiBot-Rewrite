@@ -25,9 +25,6 @@ module.exports.run = (client, message, args) => {
             const emotes = message.guild.emojis.map(e=>e.toString()).join(' ')
         }
 
-        //You can probably tell what this is by looking at the var name
-        const guildCreatedAt = new Date(message.guild.createdTimestamp);
-
         //Pretty-ifies the region
         let region = 'Wumpus Land'
         if(message.guild.region === 'us-east'){region = '<:regionFlagUSA:393889521449566208> Eastern USA'}
@@ -65,7 +62,7 @@ module.exports.run = (client, message, args) => {
             .addField('Channels:', `${message.guild.channels.size} channels`, true)
             .addField('Region:', region, true)
             //.addField("Verification:", verification, true)
-            .addField('Server Created:', guildCreatedAt.toLocaleString(), true)
+            .addField('Server Created:', new Date(message.guild.createdTimestamp).toLocaleString(), true)
             .addField('Emotes:', emotes, true)
         );
 

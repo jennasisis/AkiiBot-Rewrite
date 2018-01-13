@@ -1,12 +1,11 @@
 const Discord = require('discord.js');
-const pkg = require('../package.json');
 
 module.exports.run = (client, message, args) => {
     console.log('info command ran')
     const shard = new Discord.ShardClientUtil(client);
     message.react('✅');
     message.author.send(new Discord.RichEmbed()
-        .addField('Version', pkg.version, true)
+        .addField('Version', require('../package.json').version, true)
         .addField('Library:', '[Discord.js](http://discord.js.org)', true)
         .addField('Creator:', 'Akii#2111', true)
         .addField('Servers:', `${client.guilds.size} on this shard`, true)

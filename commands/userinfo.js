@@ -17,12 +17,6 @@ module.exports.run = (client, message, args) => {
         else if(message.author.presence.status === 'dnd'){let authorStatus = 'Do Not Disturb'}
         else if(message.author.presence.status === 'offline'){let authorStatus = 'Offline'}
 
-        //Finds the author join date
-        const authorJoined = new Date(message.member.joinedTimestamp);
-
-        //Finds the author registered date
-        const authorRegistered = new Date(message.author.createdTimestamp);
-
         //Finds the author's avatar
         if(message.author.avatarURL){const authorAvatar = message.author.avatarURL}
         else {const authorAvatar = 'https://cdn.discordapp.com/embed/avatars/1.png?width=80&height=80'}
@@ -36,8 +30,8 @@ module.exports.run = (client, message, args) => {
             .addField('Nickname:', authorNick, true)
             .addField('Status:', authorStatus, true)
             .addField('Game:', authorGame, true)
-            .addField('Joined:', authorJoined.toLocaleString(), true)
-            .addField('Registered:', authorRegistered.toLocaleString(), true)
+            .addField('Joined:', new Date(message.member.joinedTimestamp).toLocaleString(), true)
+            .addField('Registered:', new Date(message.author.createdTimestamp).toLocaleString(), true)
             .addField('Roles:', message.member.roles.map(g => g.name).join(', '), true)
     );
     } else if(message.mentions.users.size > 1){
@@ -57,12 +51,6 @@ module.exports.run = (client, message, args) => {
         if(message.mentions.users.first().presence.game){const mentionedGame = message.mentions.users.first().presence.game.name}
         else {const mentionedGame = 'None'}
 
-        //Finds the user's join date/time
-        const mentionedJoined = new Date(message.mentions.members.first().joinedTimestamp)
-
-        //Finds the user's register date/time
-        const mentionedRegistered = new Date(message.mentions.users.first().createdTimestamp)
-
         //Finds the user's avatar
         if(message.mentions.users.first().avatarURL){const mentionedAvatar = message.mentions.users.first().avatarURL}
         else {const mentionedAvatar = 'https://cdn.discordapp.com/embed/avatars/1.png?width=80&height=80'}
@@ -76,8 +64,8 @@ module.exports.run = (client, message, args) => {
             .addField('Nickname:', mentionedNick, true)
             .addField('Status:', mentionedStatus, true)
             .addField('Game:', mentionedGame, true)
-            .addField('Joined:', mentionedJoined.toLocaleString(), true)
-            .addField('Registered:', mentionedRegistered.toLocaleString(), true)
+            .addField('Joined:', new Date(message.mentions.members.first().joinedTimestamp).toLocaleString(), true)
+            .addField('Registered:', new Date(message.mentions.users.first().createdTimestamp).toLocaleString(), true)
             .addField('Roles', message.mentions.members.first().roles.map(g => g.name).join(', '), true)
         );
     }

@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const RichEmbed = require('discord.js').RichEmbed;
 
 module.exports.run = (client, message, args) => {
     console.log('userinfo command ran');
@@ -22,7 +22,7 @@ module.exports.run = (client, message, args) => {
         else {const authorAvatar = 'https://cdn.discordapp.com/embed/avatars/1.png?width=80&height=80'}
 
         //The actual message
-        message.channel.send(new Discord.RichEmbed()
+        message.channel.send(new RichEmbed()
             .setColor(message.member.displayColor)
             .setThumbnail(message.author.avatarURL)
             .setAuthor(message.author.tag, message.author.avatarURL)
@@ -56,7 +56,7 @@ module.exports.run = (client, message, args) => {
         else {const mentionedAvatar = 'https://cdn.discordapp.com/embed/avatars/1.png?width=80&height=80'}
         
         //The actual message
-        message.channel.send(new Discord.RichEmbed()
+        message.channel.send(new RichEmbed()
             .setColor(message.mentions.users.first().displayColor)
             .setThumbnail(mentionedAvatar)
             .setAuthor(message.mentions.users.first().tag, mentionedAvatar)

@@ -1,9 +1,9 @@
-const Discord = require('discord.js');
+const RichEmbed = require('discord.js').RichEmbed;
 
 module.exports.run = (client, message, args) => {
     console.log('suggestion command ran');
 
-    client.users.find('id', '107599228900999168').send(new Discord.RichEmbed()
+    client.users.find('id', '107599228900999168').send(new RichEmbed()
         .setAuthor(message.author.tag, message.author.avatarURL)
         .setTitle('Suggestion:')
         .setDescription(message.content.substring(require('../config.json').prefix + 8))

@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const RichEmbeed = require('discord.js').RichEmbed;
 
 module.exports.run = (client, message, args) => {
     console.log('guildinfo command ran');
@@ -52,7 +52,7 @@ module.exports.run = (client, message, args) => {
         else if(message.guild.verificationLevel === '4'){verification = '┻━┻ ﾐヽ(ಠ益ಠ)ノ彡┻━┻ (Extreme)'}
 
         //The actual message
-        message.channel.send(new Discord.RichEmbed()
+        message.channel.send(new RichEmbed()
             .setColor(message.guild.me.displayColor)
             .setThumbnail(guildIcon)
             .setAuthor(`Information on ${message.guild.name}:`, guildIcon, null)

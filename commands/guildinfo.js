@@ -1,8 +1,7 @@
 const RichEmbeed = require('discord.js').RichEmbed;
 
-const data = name => require(`../data/${name}.json`);
-const names = data('names');
-const flags = data('emoji').region_flags;
+const names = require('../data/names.json');
+const flags = require('../data/emoji.json').region_flags;
 
 module.exports.run = (client, message, args) => {
     console.log('guildinfo command ran');

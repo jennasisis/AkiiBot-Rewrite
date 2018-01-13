@@ -1,0 +1,6 @@
+{
+    "default_avatar":"https://cdn.discordapp.com/embed/avatars/1.png?width=80&height=80",
+    "invite": "https://discordapp.com/oauth2/authorize?permissions=2146954487&scope=bot&client_id=336521813926346763",
+    "discordjs": "http://discord.js.org",
+    "guild_invite": "http://discord.gg/54fVgRw"
+}

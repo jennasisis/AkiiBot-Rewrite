@@ -21,5 +21,12 @@
         "3": "(╯°□°）╯︵ ┻━┻ (High)",
         "4": "┻━┻ ﾐヽ(ಠ益ಠ)ノ彡┻━┻ (Extreme)",
         "default": "Default"
+    },
+    "status": {
+        "online": "Online",
+        "idle": "Idle",
+        "dnd": "Do Not Disturb",
+        "offline": "Offline",
+        "unknown": "Unknown"
     }
 }

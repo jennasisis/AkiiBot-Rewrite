@@ -1,0 +1,25 @@
+{
+    "regions": {
+        "us-east": "Eastern USA",
+        "brazil": "Brazil",
+        "eu-central": "Central Europe",
+        "hongkong": "Hong Kong",
+        "japan": "Japan",
+        "russia": "Russia",
+        "singapore": "Singapore",
+        "sydney": "Sydney",
+        "us-central": "Central USA",
+        "us-south": "Southern USA",
+        "us-west": "Western USA",
+        "eu-west": "Western Europe",
+        "unknown": "Wumpus Land (Unknown)"
+    },
+    "verification": {
+        "0": "None",
+        "1": "Low",
+        "2": "Medium",
+        "3": "(╯°□°）╯︵ ┻━┻ (High)",
+        "4": "┻━┻ ﾐヽ(ಠ益ಠ)ノ彡┻━┻ (Extreme)",
+        "default": "Default"
+    }
+}

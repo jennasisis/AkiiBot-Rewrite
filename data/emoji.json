@@ -1,4 +1,19 @@
 {
-    "ecks":"<:ecks:383800708841078785>",
-    "whte_chck_mrk":"<:whte_chck_mrk:383763992981667855>"
+    "region_flags": {
+        "us-east": "<:regionFlagUSA:393889521449566208>",
+        "brazil": "<:regionFlagBrazil:393889521177198602>",
+        "eu-central": "<:regionFlagEurope:393889521155964929>",
+        "hongkong": "<:regionFlagHongKong:393889521134993409>",
+        "japan": "<:regionFlagJapan:393889521487577109>",
+        "russia": "<:regionFlagRussia:393889521009295371>",
+        "singapore": "<:regionFlagSingapore:393889521608949781>",
+        "sydney": "<:regionFlagSydney:393889521374068746>",
+        "us-central": "<:regionFlagUSA:393889521449566208>",
+        "us-south": "<:regionFlagUSA:393889521449566208>",
+        "us-west": "<:regionFlagUSA:393889521449566208>",
+        "eu-west": "<:regionFlagEurope:393889521155964929>",
+        "unknown": "<:regionFlagWumpus:393900238244675606>"
+    },
+    "ecks": "<:ecks:383800708841078785>",
+    "whte_chck_mrk": "<:whte_chck_mrk:383763992981667855>"
 }

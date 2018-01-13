@@ -4,7 +4,7 @@ const pkg = require('../package.json');
 module.exports.run = (client, message, args) => {
     console.log('info command ran')
     const shard = new Discord.ShardClientUtil(client);
-    message.react("✅");
+    message.react('✅');
     message.author.send(new Discord.RichEmbed()
         .addField('Version', pkg.version, true)
         .addField('Library:', '[Discord.js](http://discord.js.org)', true)

@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
 module.exports.run = (client, message, args) => {
-    console.log("ping command ran");
+    console.log('ping command ran');
     message.channel.send(new Discord.RichEmbed()
         .addField(':ping_pong: Ping:', 'Pinging...', false)
         .addField(':left_right_arrow: Latency:', 'Pinging...')

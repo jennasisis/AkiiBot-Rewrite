@@ -9,24 +9,24 @@ module.exports.run = (client, message, args) => {
     } else {
         
         //If the guild icon is empty, sets guildIcon to owner's avatar
-        if(message.guild.iconURL){let guildIcon = message.guild.iconURL}
-        else {let guildIcon = message.guild.owner.user.avatarURL}
+        if(message.guild.iconURL){const guildIcon = message.guild.iconURL}
+        else {const guildIcon = message.guild.owner.user.avatarURL}
 
         //Goes with the emote parsing
-        let emoteInfo = message.guild.emojis.map(e=>e.toString()).join(' ')
+        const emoteInfo = message.guild.emojis.map(e=>e.toString()).join(' ')
         //Checks to see if the total character count of all the emojis combined is ≥ 1024
         if(emoteInfo.length >= 1024){
-            let emotes = `${message.guild.emojis.size} emotes`
+            const emotes = `${message.guild.emojis.size} emotes`
         //Checks to see if there are no emotes
         } else if(emoteInfo.length === 0){
-            let emotes = 'None'
+            const emotes = 'None'
         //Sets emotes to all of the emojis, and they get printed in the embed field
         } else {
-            let emotes = message.guild.emojis.map(e=>e.toString()).join(' ')
+            const emotes = message.guild.emojis.map(e=>e.toString()).join(' ')
         }
 
         //You can probably tell what this is by looking at the var name
-        let guildCreatedAt = new Date(message.guild.createdTimestamp);
+        const guildCreatedAt = new Date(message.guild.createdTimestamp);
 
         //Pretty-ifies the region
         let region = 'Wumpus Land'

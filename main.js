@@ -8,8 +8,8 @@ const config = require('./config.json');
 fs.readdir('./events/', (err, files) => {
   if (err) return console.error(err);
   files.forEach(file => {
-    let eventFunction = require(`./events/${file}`);
-    let eventName = file.split('.')[0];
+    const eventFunction = require(`./events/${file}`);
+    const eventName = file.split('.')[0];
     // super-secret recipe to call events with all their proper arguments *after* the `client` var.
     client.on(eventName, (...args) => eventFunction.run(client, ...args));
   });
@@ -25,7 +25,7 @@ client.on('message', message => {
 
   // The list of if/else is replaced with those simple 2 lines:
   try {
-    let commandFile = require(`./commands/${command}.js`);
+    const commandFile = require(`./commands/${command}.js`);
     commandFile.run(client, message, args);
   } catch (err) {
     console.error(err);

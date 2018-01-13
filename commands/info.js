@@ -1,7 +1,8 @@
+const Discord = require('discord.js');
+const pkg = require('../package.json');
+
 module.exports.run = (client, message, args) => {
     console.log('info command ran')
-    const Discord = require('discord.js');
-    const pkg = require('../package.json');
     const shard = new Discord.ShardClientUtil(client);
     message.react("✅");
     message.author.send(new Discord.RichEmbed()

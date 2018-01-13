@@ -1,6 +1,7 @@
+const Discord = require('discord.js');
+
 module.exports.run = (client, message, args) => {
     console.log('userinfo command ran');
-    const Discord = require('discord.js');
     
     if(message.mentions.users.size < 1){
         

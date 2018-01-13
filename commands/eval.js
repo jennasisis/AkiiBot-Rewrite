@@ -1,7 +1,7 @@
+const pkg = require('../package.json');
+
 module.exports.run = (client, message, args) => {
     console.log('eval command ran');
-
-    const pkg = require('../package.json');
     
     function clean(text) {
         if (typeof(text) === 'string')

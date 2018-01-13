@@ -1,6 +1,7 @@
+const Discord = require('discord.js');
+
 module.exports.run = (client, message, args) => {
     console.log('guildinfo command ran');
-    const Discord = require('discord.js');
 
     if(message.channel.type === 'dm'){
         message.channel.send(":x: This command will not work in DM's");

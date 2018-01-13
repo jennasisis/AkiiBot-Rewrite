@@ -8,27 +8,27 @@ module.exports.run = (client, message, args) => {
     } else {
         
         //If the guild icon is empty, sets guildIcon to owner's avatar
-        if(message.guild.iconURL){var guildIcon = message.guild.iconURL}
-        else {var guildIcon = message.guild.owner.user.avatarURL}
+        if(message.guild.iconURL){let guildIcon = message.guild.iconURL}
+        else {let guildIcon = message.guild.owner.user.avatarURL}
 
         //Goes with the emote parsing
-        var emoteInfo = message.guild.emojis.map(e=>e.toString()).join(` `)
+        let emoteInfo = message.guild.emojis.map(e=>e.toString()).join(` `)
         //Checks to see if the total character count of all the emojis combined is ≥ 1024
         if(emoteInfo.length >= 1024){
-            var emotes = `${message.guild.emojis.size} emotes`
+            let emotes = `${message.guild.emojis.size} emotes`
         //Checks to see if there are no emotes
         } else if(emoteInfo.length === 0){
-            var emotes = "None"
+            let emotes = "None"
         //Sets emotes to all of the emojis, and they get printed in the embed field
         } else {
-            var emotes = message.guild.emojis.map(e=>e.toString()).join(` `)
+            let emotes = message.guild.emojis.map(e=>e.toString()).join(` `)
         }
 
         //You can probably tell what this is by looking at the var name
-        var guildCreatedAt = new Date(message.guild.createdTimestamp);
+        let guildCreatedAt = new Date(message.guild.createdTimestamp);
 
         //Pretty-ifies the region
-        var region = "Wumpus Land"
+        let region = "Wumpus Land"
         if(message.guild.region === "us-east"){region = "<:regionFlagUSA:393889521449566208> Eastern USA"}
         else if(message.guild.region === "brazil"){region = "<:regionFlagBrazil:393889521177198602> Brazil"}
         else if(message.guild.region === "eu-central"){region = "<:regionFlagEurope:393889521155964929> Central Europe"}
@@ -44,7 +44,7 @@ module.exports.run = (client, message, args) => {
         else {region = "<:regionFlagWumpus:393900238244675606> Wumpus Land (Unknown)"}
 
         //Verification level checker
-        var verification = "Default"
+        let verification = "Default"
 
 
         if(message.guild.verificationLevel === "0"){verification = "None"}

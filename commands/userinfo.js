@@ -5,16 +5,16 @@ module.exports.run = (client, message, args) => {
     if(message.mentions.users.size < 1){
         
         //Finds the author nickname
-        if(message.member.nickname){var authorNick = message.member.nickname} else {authorNick = "None"}
+        if(message.member.nickname){let authorNick = message.member.nickname} else {authorNick = "None"}
         
         //Finds the author game and/or game URL
-        if(message.author.presence.game){var authorGame = message.author.presence.game.name} else {var authorGame = "None"}
+        if(message.author.presence.game){let authorGame = message.author.presence.game.name} else {let authorGame = "None"}
         
         //Finds the author presence status
-        if(message.author.presence.status === "online"){var authorStatus = "Online"}
-        else if(message.author.presence.status === "idle"){var authorStatus = "Idle"}
-        else if(message.author.presence.status === "dnd"){var authorStatus = "Do Not Disturb"}
-        else if(message.author.presence.status === "offline"){var authorStatus = "Offline"}
+        if(message.author.presence.status === "online"){let authorStatus = "Online"}
+        else if(message.author.presence.status === "idle"){let authorStatus = "Idle"}
+        else if(message.author.presence.status === "dnd"){let authorStatus = "Do Not Disturb"}
+        else if(message.author.presence.status === "offline"){let authorStatus = "Offline"}
 
         //Finds the author join date
         var authorJoined = new Date(message.member.joinedTimestamp);
@@ -23,8 +23,8 @@ module.exports.run = (client, message, args) => {
         var authorRegistered = new Date(message.author.createdTimestamp);
 
         //Finds the author's avatar
-        if(message.author.avatarURL){var authorAvatar = message.author.avatarURL}
-        else {var authorAvatar = "https://cdn.discordapp.com/embed/avatars/1.png?width=80&height=80"}
+        if(message.author.avatarURL){let authorAvatar = message.author.avatarURL}
+        else {let authorAvatar = "https://cdn.discordapp.com/embed/avatars/1.png?width=80&height=80"}
 
         //The actual message
         message.channel.send(new Discord.RichEmbed()
@@ -43,7 +43,7 @@ module.exports.run = (client, message, args) => {
         message.channel.send(":x: You are mentioning too many users.")
     } else {
         //Finds the user's nickname
-        if(message.mentions.members.first().nickname){var mentionedNick = message.mentions.members.first().nickname}
+        if(message.mentions.members.first().nickname){let mentionedNick = message.mentions.members.first().nickname}
         else {var mentionedNick = "None"}
 
         //Finds the user's presence status
@@ -53,18 +53,18 @@ module.exports.run = (client, message, args) => {
         else if(message.mentions.users.first().presence.status === "offline"){var mentionedStatus = "Offline"}
 
         //Finds the user's game
-        if(message.mentions.users.first().presence.game){var mentionedGame = message.mentions.users.first().presence.game.name}
-        else {var mentionedGame = "None"}
+        if(message.mentions.users.first().presence.game){let mentionedGame = message.mentions.users.first().presence.game.name}
+        else {let mentionedGame = "None"}
 
         //Finds the user's join date/time
-        var mentionedJoined = new Date(message.mentions.members.first().joinedTimestamp)
+        let mentionedJoined = new Date(message.mentions.members.first().joinedTimestamp)
 
         //Finds the user's register date/time
-        var mentionedRegistered = new Date(message.mentions.users.first().createdTimestamp)
+        let mentionedRegistered = new Date(message.mentions.users.first().createdTimestamp)
 
         //Finds the user's avatar
         if(message.mentions.users.first().avatarURL){var mentionedAvatar = message.mentions.users.first().avatarURL}
-        else {var mentionedAvatar = "https://cdn.discordapp.com/embed/avatars/1.png?width=80&height=80"}
+        else {let mentionedAvatar = "https://cdn.discordapp.com/embed/avatars/1.png?width=80&height=80"}
         
         //The actual message
         message.channel.send(new Discord.RichEmbed()

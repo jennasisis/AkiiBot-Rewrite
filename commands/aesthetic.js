@@ -3,7 +3,7 @@ module.exports.run = (client, message, args) => {
         return aString.split("").join(" ");
     }
     
-    var spacedtext = args.join(" ");
-    var wavetext = insertSpaces(spacedtext)
+    let spacedtext = args.join(" ");
+    let wavetext = insertSpaces(spacedtext)
     message.channel.send("```"+wavetext+"```");
 }

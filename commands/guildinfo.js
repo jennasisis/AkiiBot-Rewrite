@@ -1,4 +1,4 @@
-const RichEmbeed = require('discord.js').RichEmbed;
+const RichEmbed = require('discord.js').RichEmbed;
 
 const names = require('../data/names.json');
 const flags = require('../data/emoji.json').region_flags;

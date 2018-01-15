@@ -3,7 +3,7 @@ const RichEmbed = require('discord.js').RichEmbed;
 const defaultAvatarUrl = require('../data/links.json').default_avatar;
 const statuses = require('../data/names.json').status;
 
-function sendUserEmbed(user, member) {
+function sendUserEmbed(user, member, message) {
     //Finds the author nickname
     const authorNick = member.nickname || 'None';
 
@@ -12,7 +12,7 @@ function sendUserEmbed(user, member) {
     const authorGame = game ? game.name : 'None';
 
     //Finds the author presence status
-    const mentionedStatus = statuses[user.presence.status] || statuses.unknown;
+    const authorStatus = statuses[user.presence.status] || statuses.unknown;
 
     //Finds the author's avatar
     const authorAvatar = user.avatarURL || defaultAvatarUrl;
@@ -39,7 +39,7 @@ module.exports.run = (client, message, args) => {
     users = message.mentions.users,
     userSize = users.size;
 
-    if (userSize < 1) sendUserEmbed(message.author, message.member);
+    if (userSize < 1) sendUserEmbed(message.author, message.member, message);
     else if (userSize > 1) message.channel.send(":x: You are mentioning too many users.")
-    else sendUserEmbed(users.first(), mentions.members.first());
+    else sendUserEmbed(users.first(), mentions.members.first(), message);
 };

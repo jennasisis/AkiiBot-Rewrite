@@ -1,4 +1,4 @@
-const RichEmbed = require('discord.js');
+const RichEmbed = require('discord.js').RichEmbed;
 
 module.exports.run = (client, message, args) => {
     console.log('ping command ran');

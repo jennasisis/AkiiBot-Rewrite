@@ -1,74 +1,54 @@
-module.exports.run = (client, message, args) => {
-    console.log("guildinfo command ran");
-    const Discord = require('discord.js');
+const RichEmbeed = require('discord.js').RichEmbed;
 
-    if(message.channel.type === "dm"){
+const names = require('../data/names.json');
+const flags = require('../data/emoji.json').region_flags;
+
+module.exports.run = (client, message, args) => {
+    console.log('guildinfo command ran');
+
+    if (message.channel.type === 'dm') {
         message.channel.send(":x: This command will not work in DM's");
         return;
-    } else {
-        
-        //If the guild icon is empty, sets guildIcon to owner's avatar
-        if(message.guild.iconURL){var guildIcon = message.guild.iconURL}
-        else {var guildIcon = message.guild.owner.user.avatarURL}
+    }
+    else {
+        const guild = message.guild,
+        guildOwner = message.guild.owner.user,
+        guildIcon = guild.iconUrl || guildOwner.avatarURL,
 
-        //Goes with the emote parsing
-        var emoteInfo = message.guild.emojis.map(e=>e.toString()).join(` `)
-        //Checks to see if the total character count of all the emojis combined is ≥ 1024
-        if(emoteInfo.length >= 1024){
-            var emotes = `${message.guild.emojis.size} emotes`
-        //Checks to see if there are no emotes
-        } else if(emoteInfo.length === 0){
-            var emotes = "None"
-        //Sets emotes to all of the emojis, and they get printed in the embed field
-        } else {
-            var emotes = message.guild.emojis.map(e=>e.toString()).join(` `)
-        }
+        verificationLevel = guild.verificationLevel,
 
-        //You can probably tell what this is by looking at the var name
-        var guildCreatedAt = new Date(message.guild.createdTimestamp);
+        emoji = guild.emojis,
+        emoteInfo = emoji.map(e => e.toString()).join(' '); //Goes with the emote parsing
+
+        let emotes;
+
+        if (emoteInfo.length >= 1024) emotes = `${emoji.size} emotes`; //Checks to see if the total character count of all the emojis combined is ≥ 1024
+        else if (emoteInfo.length === 0) emotes = 'None'; //Checks to see if there are no emotes
+        else emotes = emoteInfo; //Sets emotes to all of the emojis, and they get printed in the embed field
 
         //Pretty-ifies the region
-        var region = "Wumpus Land"
-        if(message.guild.region === "us-east"){region = "<:regionFlagUSA:393889521449566208> Eastern USA"}
-        else if(message.guild.region === "brazil"){region = "<:regionFlagBrazil:393889521177198602> Brazil"}
-        else if(message.guild.region === "eu-central"){region = "<:regionFlagEurope:393889521155964929> Central Europe"}
-        else if(message.guild.region === "hongkong"){region = "<:regionFlagHongKong:393889521134993409> Hong Kong"}
-        else if(message.guild.region === "japan"){region = "<:regionFlagJapan:393889521487577109> Japan"}
-        else if(message.guild.region === "russia"){region = "<:regionFlagRussia:393889521009295371> Russia"}
-        else if(message.guild.region === "singapore"){region = "<:regionFlagSingapore:393889521608949781> Singapore"}
-        else if(message.guild.region === "sydney"){region = "<:regionFlagSydney:393889521374068746> Sydney"}
-        else if(message.guild.region === "us-central"){region = "<:regionFlagUSA:393889521449566208> Central USA"}
-        else if(message.guild.region === "us-south"){region = "<:regionFlagUSA:393889521449566208> Southern USA"}
-        else if(message.guild.region === "us-west"){region = "<:regionFlagUSA:393889521449566208> Western USA"}
-        else if(message.guild.region === "eu-west"){region = "<:regionFlagEurope:393889521155964929> Western Europe"}
-        else {region = "<:regionFlagWumpus:393900238244675606> Wumpus Land (Unknown)"}
+        const guildRegion = guild.region;
+        const region = `${flags[guildRegion] || flags.unknown} ${names.regions[guildRegion] || names.unknown}`;
 
         //Verification level checker
-        var verification = "Default"
-
-
-        if(message.guild.verificationLevel === "0"){verification = "None"}
-        else if(message.guild.verificationLevel === "1"){verification = "Low"}
-        else if(message.guild.verificationLevel === "2"){verification = "Medium"}
-        else if(message.guild.verificationLevel === "3"){verification = "(╯°□°）╯︵ ┻━┻ (High)"}
-        else if(message.guild.verificationLevel === "4"){verification = "┻━┻ ﾐヽ(ಠ益ಠ)ノ彡┻━┻ (Extreme)"}
+        const verification = names.verification[verificationLevel] || names.verification.default;
 
         //The actual message
-        message.channel.send(new Discord.RichEmbed()
-            .setColor(message.guild.me.displayColor)
+        message.channel.send(new RichEmbed()
+            .setColor(guild.me.displayColor)
             .setThumbnail(guildIcon)
-            .setAuthor(`Information on ${message.guild.name}:`, guildIcon, null)
-            .addField("Guild Owner:", message.guild.owner.user.tag, true)
-            .addField("Guild ID:", message.guild.id, true)
-            .addField("Members:", message.guild.memberCount, true)
-            .addField("Channels:", `${message.guild.channels.size} channels`, true)
-            .addField("Region:", region, true)
+            .setAuthor(`Information on ${guild.name}:`, guildIcon, null)
+            .addField('Guild Owner:', guildOwner.tag, true)
+            .addField('Guild ID:', guild.id, true)
+            .addField('Members:', guild.memberCount, true)
+            .addField('Channels:', `${guild.channels.size} channels`, true)
+            .addField('Region:', region, true)
             //.addField("Verification:", verification, true)
-            .addField("Server Created:", guildCreatedAt.toLocaleString(), true)
-            .addField("Emotes:", emotes, true)
+            .addField('Server Created:', new Date(guild.createdTimestamp).toLocaleString(), true)
+            .addField('Emotes:', emotes, true)
         );
 
         message.channel.send(`Verification var: ${verification}`);
-        message.channel.send(`Verification Level: ${message.guild.verificationLevel}`);
+        message.channel.send(`Verification Level: ${verificationLevel}`);
     }
 };

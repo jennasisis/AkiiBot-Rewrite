@@ -1,83 +1,45 @@
-module.exports.run = (client, message, args) => {
-    console.log("userinfo command ran");
-    const Discord = require('discord.js');
-    
-    if(message.mentions.users.size < 1){
-        
-        //Finds the author nickname
-        if(message.member.nickname){var authorNick = message.member.nickname} else {authorNick = "None"}
-        
-        //Finds the author game and/or game URL
-        if(message.author.presence.game){var authorGame = message.author.presence.game.name} else {var authorGame = "None"}
-        
-        //Finds the author presence status
-        if(message.author.presence.status === "online"){var authorStatus = "Online"}
-        else if(message.author.presence.status === "idle"){var authorStatus = "Idle"}
-        else if(message.author.presence.status === "dnd"){var authorStatus = "Do Not Disturb"}
-        else if(message.author.presence.status === "offline"){var authorStatus = "Offline"}
+const RichEmbed = require('discord.js').RichEmbed;
 
-        //Finds the author join date
-        var authorJoined = new Date(message.member.joinedTimestamp);
+const defaultAvatarUrl = require('../data/links.json').default_avatar;
+const statuses = require('../data/names.json').status;
 
-        //Finds the author registered date
-        var authorRegistered = new Date(message.author.createdTimestamp);
+function sendUserEmbed(user, member) {
+    //Finds the author nickname
+    const authorNick = member.nickname || 'None';
 
-        //Finds the author's avatar
-        if(message.author.avatarURL){var authorAvatar = message.author.avatarURL}
-        else {var authorAvatar = "https://cdn.discordapp.com/embed/avatars/1.png?width=80&height=80"}
+    //Finds the author game and/or game URL
+    const game = user.presence.game;
+    const authorGame = game ? game.name : 'None';
 
-        //The actual message
-        message.channel.send(new Discord.RichEmbed()
-            .setColor(message.member.displayColor)
-            .setThumbnail(message.author.avatarURL)
-            .setAuthor(message.author.tag, message.author.avatarURL)
-            .addField("ID:", message.author.id, true)
-            .addField("Nickname:", authorNick, true)
-            .addField("Status:", authorStatus, true)
-            .addField("Game:", authorGame, true)
-            .addField("Joined:", authorJoined.toLocaleString(), true)
-            .addField("Registered:", authorRegistered.toLocaleString(), true)
-            .addField("Roles:", message.member.roles.map(g => g.name).join(", "), true)
+    //Finds the author presence status
+    const mentionedStatus = statuses[user.presence.status] || statuses.unknown;
+
+    //Finds the author's avatar
+    const authorAvatar = user.avatarURL || defaultAvatarUrl;
+
+    //The actual message
+    message.channel.send(new RichEmbed()
+        .setColor(member.displayColor)
+        .setThumbnail(user.avatarURL)
+        .setAuthor(user.tag, user.avatarURL)
+        .addField('ID:', user.id, true)
+        .addField('Nickname:', authorNick, true)
+        .addField('Status:', authorStatus, true)
+        .addField('Game:', authorGame, true)
+        .addField('Joined:', new Date(member.joinedTimestamp).toLocaleString(), true)
+        .addField('Registered:', new Date(user.createdTimestamp).toLocaleString(), true)
+        .addField('Roles:', member.roles.map(g => g.name).join(', '), true)
     );
-    } else if(message.mentions.users.size > 1){
-        message.channel.send(":x: You are mentioning too many users.")
-    } else {
-        //Finds the user's nickname
-        if(message.mentions.members.first().nickname){var mentionedNick = message.mentions.members.first().nickname}
-        else {var mentionedNick = "None"}
+}
 
-        //Finds the user's presence status
-        if(message.mentions.users.first().presence.status === "online"){var mentionedStatus = "Online"}
-        else if(message.mentions.users.first().presence.status === "idle"){var mentionedStatus = "Idle"}
-        else if(message.mentions.users.first().presence.status === "dnd"){var mentionedStatus = "Do Not Disturb"}
-        else if(message.mentions.users.first().presence.status === "offline"){var mentionedStatus = "Offline"}
+module.exports.run = (client, message, args) => {
+    console.log('userinfo command ran');
 
-        //Finds the user's game
-        if(message.mentions.users.first().presence.game){var mentionedGame = message.mentions.users.first().presence.game.name}
-        else {var mentionedGame = "None"}
+    const mentions = message.mentions,
+    users = message.mentions.users,
+    userSize = users.size;
 
-        //Finds the user's join date/time
-        var mentionedJoined = new Date(message.mentions.members.first().joinedTimestamp)
-
-        //Finds the user's register date/time
-        var mentionedRegistered = new Date(message.mentions.users.first().createdTimestamp)
-
-        //Finds the user's avatar
-        if(message.mentions.users.first().avatarURL){var mentionedAvatar = message.mentions.users.first().avatarURL}
-        else {var mentionedAvatar = "https://cdn.discordapp.com/embed/avatars/1.png?width=80&height=80"}
-        
-        //The actual message
-        message.channel.send(new Discord.RichEmbed()
-            .setColor(message.mentions.users.first().displayColor)
-            .setThumbnail(mentionedAvatar)
-            .setAuthor(message.mentions.users.first().tag, mentionedAvatar)
-            .addField("ID:", message.mentions.users.first().id, true)
-            .addField("Nickname:", mentionedNick, true)
-            .addField("Status:", mentionedStatus, true)
-            .addField("Game:", mentionedGame, true)
-            .addField("Joined:", mentionedJoined.toLocaleString(), true)
-            .addField("Registered:", mentionedRegistered.toLocaleString(), true)
-            .addField("Roles", message.mentions.members.first().roles.map(g => g.name).join(", "), true)
-        );
-    }
+    if (userSize < 1) sendUserEmbed(message.author, message.member);
+    else if (userSize > 1) message.channel.send(":x: You are mentioning too many users.")
+    else sendUserEmbed(users.first(), mentions.members.first());
 };

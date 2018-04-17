@@ -1,1 +1,7 @@
-language: node.js
+langauge: node_js
+node_js: node
+sudo: true
+install: 
+- npm i -g npm
+- npm i
+script: npm start
